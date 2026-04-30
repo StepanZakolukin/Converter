@@ -56,3 +56,7 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Настройки пользователя JetBrains (Rider/ReSharper)
+*.DotSettings.User
+*.sln.DotSettings.User
