@@ -1,4 +1,6 @@
 ﻿using System.Xml.Linq;
+using Converter.Application.Constants;
+using Converter.Application.Extentions;
 using Converter.Application.Models;
 
 namespace Converter.Application.Logic.EmployeeRepository;
@@ -8,17 +10,17 @@ public class EmployeeRepository : IEmployeeRepository
     public IEnumerable<Employee> GetAll(string path)
     {
         var doc = XDocument.Load(path);
-        return doc.Descendants("Employee").Select(ParseEmployee);
+        return doc.Descendants(OutputXmlElement.Employee).Select(ParseEmployee);
     }
     
     public void AddRecord(string path, FullName name, SalaryRecord salary)
     {
         var doc = XDocument.Load(path);
-        doc.Root?.Add(new XElement("item",
-            new XAttribute("name", name.FirstName),
-            new XAttribute("surname", name.LastName),
-            new XAttribute("amount", salary.Amount),
-            new XAttribute("mount", salary.Month)));
+        doc.Root?.Add(new XElement(InputXmlElement.Item,
+            new XAttribute(OutputXmlElement.Name, name.FirstName),
+            new XAttribute(OutputXmlElement.Surname, name.LastName),
+            new XAttribute(OutputXmlElement.Amount, salary.Amount),
+            new XAttribute(OutputXmlElement.Month, salary.Month)));
         doc.Save(path);
     }
 
@@ -28,32 +30,19 @@ public class EmployeeRepository : IEmployeeRepository
         {
             Name = new FullName
             {
-                FirstName = element.Attribute("name")?.Value,
-                LastName = element.Attribute("surname")?.Value
+                FirstName = element.Attribute(OutputXmlElement.Name)?.Value,
+                LastName = element.Attribute(OutputXmlElement.Surname)?.Value
             },
             SalaryInfo = new SalaryInfo
             {
-                MonthlySalaries = element.Elements("salary").Select(s => new SalaryRecord
-                {
-                    Month = s.Attribute("mount")?.Value,
-                    Amount = Parse(s.Attribute("amount")?.Value)
-                }).ToList()
+                MonthlySalaries = element.Elements(OutputXmlElement.Salary)
+                    .Select(s => new SalaryRecord 
+                    {
+                        Month = s.Attribute(OutputXmlElement.Month)?.Value,
+                        Amount = DoubleExtensions.Parse(s.Attribute(OutputXmlElement.Amount)?.Value) 
+                    })
+                    .ToList()
             }
         };
-    }
-    
-    private double Parse(string number)
-    {
-        if (string.IsNullOrWhiteSpace(number)) return 0;
-        
-        var normalized = number.Replace(',', '.');
-        
-        if (double.TryParse(normalized, System.Globalization.NumberStyles.Any, 
-                System.Globalization.CultureInfo.InvariantCulture, out var result))
-        {
-            return result;
-        }
-    
-        return 0;
     }
 }
