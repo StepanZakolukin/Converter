@@ -1,0 +1,7 @@
+﻿namespace Converter.Application.Models;
+
+public record FullName
+{
+    public required string FirstName { get; init; }
+    public required string LastName { get; init; }
+}

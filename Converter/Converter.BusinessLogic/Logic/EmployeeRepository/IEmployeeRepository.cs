@@ -5,5 +5,5 @@ namespace Converter.Application.Logic.EmployeeRepository;
 public interface IEmployeeRepository
 {
     IEnumerable<Employee> GetAll(string path);
-    void AddRecord(string path, Employee newItem);
+    void AddRecord(string path, FullName name, SalaryRecord salary);
 }

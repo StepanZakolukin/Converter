@@ -20,9 +20,9 @@ public class AppOrchestrator(
         return employeeRepository.GetAll(result);
     }
 
-    public IEnumerable<Employee> AddAndRefresh(string source, string xslt, string result, Employee newItem)
+    public IEnumerable<Employee> AddAndRefresh(string source, string xslt, string result, FullName name, SalaryRecord salary)
     {
-        employeeRepository.AddRecord(source, newItem);
+        employeeRepository.AddRecord(source, name, salary);
         
         return RunFullCycle(source, xslt, result);
     }
