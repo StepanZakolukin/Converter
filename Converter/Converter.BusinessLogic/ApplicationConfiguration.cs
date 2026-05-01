@@ -12,7 +12,7 @@ public static class ApplicationConfiguration
     {
         return services
             .AddSingleton<IDataEnricher, DataEnricher>()
-            .AddSingleton<IXmlTransformer, XmlTransformer>()
+            .AddSingleton<IXmlTransformer, XsltTransformer>()
             .AddSingleton<IEmployeeRepository, EmployeeRepository>()
             .AddSingleton<IAppOrchestrator, AppOrchestrator>();
     }
