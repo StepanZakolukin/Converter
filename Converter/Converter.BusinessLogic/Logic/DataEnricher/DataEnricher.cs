@@ -1,10 +1,9 @@
 ﻿using System.Globalization;
-using System.Xml;
 using System.Xml.Linq;
-using Converter.Application.Constants;
-using Converter.Application.Extentions;
+using Converter.BusinessLogic.Constants;
+using Converter.BusinessLogic.Extensions;
 
-namespace Converter.Application.Logic.DataEnricher;
+namespace Converter.BusinessLogic.Logic.DataEnricher;
 
 public class DataEnricher : IDataEnricher
 {

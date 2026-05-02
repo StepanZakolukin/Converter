@@ -1,9 +1,9 @@
-﻿using Converter.Application.Models;
+﻿using Converter.BusinessLogic.Models;
 
-namespace Converter.Application.Logic.AppOrchestrator;
+namespace Converter.BusinessLogic.Logic.AppOrchestrator;
 
 public interface IAppOrchestrator
 {
-    IEnumerable<Employee> RunFullCycle(string source, string xslt, string result);
-    IEnumerable<Employee> AddAndRefresh(string source, string xslt, string result, FullName name, SalaryRecord salary);
+    IEnumerable<Employee> RunFullCycle(string source, string result);
+    IEnumerable<Employee> AddAndRefresh(string source, string result, FullName name, Salary salary);
 }

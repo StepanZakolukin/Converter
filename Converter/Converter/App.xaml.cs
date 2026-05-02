@@ -1,5 +1,6 @@
 ﻿using System.Windows;
-using Converter.Application;
+using Converter.BusinessLogic;
+using Converter.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Converter;
@@ -21,7 +22,8 @@ public partial class App
     private void ConfigureServices(ServiceCollection services)
     {
         services
-            .AddApplicationServices()
+            .AddBusinessLogicServices()
+            .AddTransient<MainViewModel>()
             .AddSingleton<MainWindow>();
     }
 

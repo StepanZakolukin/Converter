@@ -1,18 +1,19 @@
-﻿using Converter.Application.Logic.DataEnricher;
-using Converter.Application.Logic.EmployeeRepository;
-using Converter.Application.Logic.XmlTransformer;
-using Converter.Application.Models;
+﻿using Converter.BusinessLogic.Constants;
+using Converter.BusinessLogic.Logic.DataEnricher;
+using Converter.BusinessLogic.Logic.EmployeeRepository;
+using Converter.BusinessLogic.Logic.XmlTransformer;
+using Converter.BusinessLogic.Models;
 
-namespace Converter.Application.Logic.AppOrchestrator;
+namespace Converter.BusinessLogic.Logic.AppOrchestrator;
 
 public class AppOrchestrator(
     IXmlTransformer xmlTransformer,
     IDataEnricher dataEnricher,
     IEmployeeRepository employeeRepository) : IAppOrchestrator
 {
-    public IEnumerable<Employee> RunFullCycle(string source, string xslt, string result)
+    public IEnumerable<Employee> RunFullCycle(string source, string result)
     {
-        xmlTransformer.Transform(source, xslt, result);
+        xmlTransformer.Transform(source, Resources.TransformFileUri, result);
         
         dataEnricher.EnrichEmployeesXml(result);
         dataEnricher.EnrichSourceXml(source);
@@ -20,10 +21,10 @@ public class AppOrchestrator(
         return employeeRepository.GetAll(result);
     }
 
-    public IEnumerable<Employee> AddAndRefresh(string source, string xslt, string result, FullName name, SalaryRecord salary)
+    public IEnumerable<Employee> AddAndRefresh(string source, string result, FullName name, Salary salary)
     {
         employeeRepository.AddRecord(source, name, salary);
         
-        return RunFullCycle(source, xslt, result);
+        return RunFullCycle(source, result);
     }
 }

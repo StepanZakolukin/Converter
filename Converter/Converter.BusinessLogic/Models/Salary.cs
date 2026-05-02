@@ -1,6 +1,6 @@
-﻿namespace Converter.Application.Models;
+﻿namespace Converter.BusinessLogic.Models;
 
-public record SalaryRecord
+public record Salary
 {
     public required string Month { get; init; }
     public required double Amount { get; init; }

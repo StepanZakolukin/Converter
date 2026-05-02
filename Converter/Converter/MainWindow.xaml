@@ -5,8 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Конвертер"
+        Height="450"
+        Width="800"
+        WindowState="Maximized">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Margin="0, 0, 0, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="5" Command="{Binding LoadFileCommand}">Загрузить файл</Button>
+            <Button Grid.Column="1" Margin="5" Command="{Binding TransformFileCommand}">Преобразовать</Button>
+        </Grid>
+        
+        <Grid Grid.Row="1" Margin="0, 0, 0, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock Text="Фамилия:"/>
+                <TextBox Height="20" Text="{Binding NewSurname, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="5">
+                <TextBlock Text="Имя:"/>
+                <TextBox Height="20" Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Margin="5">
+                <TextBlock Text="Сумма:"/>
+                <TextBox Height="20" Text="{Binding NewAmount, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Margin="5">
+                <TextBlock Text="Месяц:"/>
+                <ComboBox Height="20" ItemsSource="{Binding MonthList}" SelectedItem="{Binding SelectedMonthRu}" />
+            </StackPanel>
+            <Button Height="20" Grid.Column="4" VerticalAlignment="Bottom" Margin="5" 
+                    Command="{Binding AddEntryCommand}">Добавить</Button>
+        </Grid>
+        
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Employees}"
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto"
+                  FrozenColumnCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="100"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="100"/>
+                <DataGridTextColumn Header="Январь" Binding="{Binding January}" Width="100"/>
+                <DataGridTextColumn Header="Февраль" Binding="{Binding February}" Width="*"/>
+                <DataGridTextColumn Header="Март" Binding="{Binding March}" Width="*"/>
+                <DataGridTextColumn Header="Апрель" Binding="{Binding April}" Width="*"/>
+                <DataGridTextColumn Header="Май" Binding="{Binding May}" Width="*"/>
+                <DataGridTextColumn Header="Июнь" Binding="{Binding June}" Width="*"/>
+                <DataGridTextColumn Header="Июль" Binding="{Binding July}" Width="*"/>
+                <DataGridTextColumn Header="Август" Binding="{Binding August}" Width="*"/>
+                <DataGridTextColumn Header="Сентябрь" Binding="{Binding September}" Width="*"/>
+                <DataGridTextColumn Header="Октябрь" Binding="{Binding October}" Width="*"/>
+                <DataGridTextColumn Header="Ноябрь" Binding="{Binding November}" Width="*"/>
+                <DataGridTextColumn Header="Декабрь" Binding="{Binding December}" Width="*"/>
+                <DataGridTextColumn Header="ИТОГО" Binding="{Binding Total}" Width="*" FontWeight="Bold"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

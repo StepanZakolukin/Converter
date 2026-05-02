@@ -1,9 +1,10 @@
-﻿using Converter.Application.Models;
+﻿using Converter.BusinessLogic.Models;
 
-namespace Converter.Application.Logic.EmployeeRepository;
+namespace Converter.BusinessLogic.Logic.EmployeeRepository;
 
 public interface IEmployeeRepository
 {
     IEnumerable<Employee> GetAll(string path);
-    void AddRecord(string path, FullName name, SalaryRecord salary);
+    IEnumerable<Employee> GetAllRow(string path);
+    void AddRecord(string path, FullName name, Salary salary);
 }

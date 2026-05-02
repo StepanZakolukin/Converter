@@ -1,4 +1,4 @@
-﻿namespace Converter.Application.Models;
+﻿namespace Converter.BusinessLogic.Models;
 
 public record Employee
 {

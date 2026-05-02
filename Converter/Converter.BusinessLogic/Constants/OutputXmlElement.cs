@@ -1,4 +1,4 @@
-﻿namespace Converter.Application.Constants;
+﻿namespace Converter.BusinessLogic.Constants;
 
 public static class OutputXmlElement
 {
@@ -8,5 +8,5 @@ public static class OutputXmlElement
     public const string TotalSalary = "totalSalary";
     public const string Name = "name";
     public const string Surname = "surname";
-    public const string Month = "month";
+    public const string Month = "mount";
 }

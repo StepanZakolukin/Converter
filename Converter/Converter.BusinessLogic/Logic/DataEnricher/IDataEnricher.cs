@@ -1,4 +1,4 @@
-﻿namespace Converter.Application.Logic.DataEnricher;
+﻿namespace Converter.BusinessLogic.Logic.DataEnricher;
 
 public interface IDataEnricher
 {

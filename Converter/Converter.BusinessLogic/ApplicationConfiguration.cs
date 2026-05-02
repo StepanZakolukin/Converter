@@ -1,14 +1,14 @@
-﻿using Converter.Application.Logic.AppOrchestrator;
-using Converter.Application.Logic.DataEnricher;
-using Converter.Application.Logic.EmployeeRepository;
-using Converter.Application.Logic.XmlTransformer;
+﻿using Converter.BusinessLogic.Logic.AppOrchestrator;
+using Converter.BusinessLogic.Logic.DataEnricher;
+using Converter.BusinessLogic.Logic.EmployeeRepository;
+using Converter.BusinessLogic.Logic.XmlTransformer;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Converter.Application;
+namespace Converter.BusinessLogic;
 
 public static class ApplicationConfiguration
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    public static IServiceCollection AddBusinessLogicServices(this IServiceCollection services)
     {
         return services
             .AddSingleton<IDataEnricher, DataEnricher>()

@@ -1,6 +1,6 @@
-﻿namespace Converter.Application.Logic.XmlTransformer;
+﻿namespace Converter.BusinessLogic.Logic.XmlTransformer;
 
 public interface IXmlTransformer
 {
-    void Transform(string inputXmlPath, string xsltPath, string outputXmlPath);
+    void Transform(string xmlInput, string xsltResourceUri, string xmlOutput);
 }
