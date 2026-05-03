@@ -1,6 +1,6 @@
 ﻿namespace Converter.BusinessLogic.Constants;
 
-public class InputXmlElement
+public static class SourceXmlElements
 {
     public const string Item = "item";
     public const string TotalAll = "totalAll";

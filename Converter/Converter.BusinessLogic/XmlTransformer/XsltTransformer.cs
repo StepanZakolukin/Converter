@@ -1,13 +1,12 @@
-﻿using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Xml;
 using System.Xml.Xsl;
 
-namespace Converter.BusinessLogic.Logic.XmlTransformer;
+namespace Converter.BusinessLogic.XmlTransformer;
 
 public class XsltTransformer : IXmlTransformer
 {
-    public void Transform(string xmlInput, string xsltResourceUri, string xmlOutput)
+    public void Transform(string inputPath, string xsltResourceUri, string outputPath)
     {
         var uri = new Uri(xsltResourceUri);
         var resourceStream = Application.GetResourceStream(uri);
@@ -19,8 +18,8 @@ public class XsltTransformer : IXmlTransformer
         var xslt = new XslCompiledTransform();
         xslt.Load(reader);
 
-        using var writer = XmlWriter.Create(xmlOutput, xslt.OutputSettings);
-        using var xmlReader = XmlReader.Create(xmlInput);
+        using var writer = XmlWriter.Create(outputPath, xslt.OutputSettings);
+        using var xmlReader = XmlReader.Create(inputPath);
         xslt.Transform(xmlReader, writer);
     }
 }

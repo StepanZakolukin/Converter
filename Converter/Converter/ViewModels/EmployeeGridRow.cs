@@ -1,20 +1,20 @@
 ﻿namespace Converter.ViewModels;
 
-public class EmployeeGridRow
+public record EmployeeGridRow
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public double January { get; set; }
-    public double February { get; set; }
-    public double March { get; set; }
-    public double April { get; set; }
-    public double May { get; set; }
-    public double June { get; set; }
-    public double July { get; set; }
-    public double August { get; set; }
-    public double September { get; set; }
-    public double October { get; set; }
-    public double November { get; set; }
-    public double December { get; set; }
-    public double Total { get; set; }
+    public required string FirstName { get; init; }
+    public required string LastName { get; init; }
+    public required double January { get; init; }
+    public required double February { get; init; }
+    public required double March { get; init; }
+    public required double April { get; init; }
+    public required double May { get; init; }
+    public required double June { get; init; }
+    public required double July { get; init; }
+    public double August { get; init; }
+    public required double September { get; init; }
+    public required double October { get; init; }
+    public required double November { get; init; }
+    public required double December { get; init; }
+    public required double Total { get; init; }
 }

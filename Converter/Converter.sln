@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter", "Converter\Conv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter.BusinessLogic", "Converter.BusinessLogic\Converter.BusinessLogic.csproj", "{438C81B0-C437-4593-859C-D24975E0FB56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter.Core", "Converter.Core\Converter.Core.csproj", "{DE84B24F-ABF9-440B-90F8-8CBF2B7CE87D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{438C81B0-C437-4593-859C-D24975E0FB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438C81B0-C437-4593-859C-D24975E0FB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438C81B0-C437-4593-859C-D24975E0FB56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE84B24F-ABF9-440B-90F8-8CBF2B7CE87D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE84B24F-ABF9-440B-90F8-8CBF2B7CE87D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE84B24F-ABF9-440B-90F8-8CBF2B7CE87D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE84B24F-ABF9-440B-90F8-8CBF2B7CE87D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

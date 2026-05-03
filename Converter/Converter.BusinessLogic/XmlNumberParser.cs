@@ -1,9 +1,11 @@
 ﻿using System.Globalization;
 
-namespace Converter.BusinessLogic.Extensions;
+namespace Converter.BusinessLogic;
 
-public static class DoubleExtensions
+public static class XmlNumberParser
 {
+    private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
+    
     public static bool TryParse(string number, out double result)
     {
         result = double.NaN;
@@ -14,4 +16,6 @@ public static class DoubleExtensions
     public static double Parse(string number) => TryParse(number, out var result) 
         ? result 
         : throw new ArgumentException(number);
+    
+    public static string ToXmlString(double value) => value.ToString("F2", Culture);
 }

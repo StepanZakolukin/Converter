@@ -1,6 +1,6 @@
 ﻿namespace Converter.Constants;
 
-public class MonthRu
+public static class MonthRu
 {
     public const string January = "Январь";
     public const string February = "Февраль";
