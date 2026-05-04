@@ -2,7 +2,7 @@
 
 namespace Converter.BusinessLogic.Validation;
 
-public class XmlIntegrityChecker : IXmlIntegrityChecker
+internal class XmlIntegrityChecker : IXmlIntegrityChecker
 {
     public bool Check(string filePath, out string message)
     {

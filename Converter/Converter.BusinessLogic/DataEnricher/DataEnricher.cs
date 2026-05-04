@@ -3,7 +3,7 @@ using Converter.BusinessLogic.Constants;
 
 namespace Converter.BusinessLogic.DataEnricher;
 
-public class DataEnricher : IDataEnricher
+internal class DataEnricher : IDataEnricher
 {
     public void EnrichReport(string path)
     {

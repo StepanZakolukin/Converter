@@ -4,7 +4,7 @@ using Converter.BusinessLogic.XmlTransformer;
 
 namespace Converter.BusinessLogic.AppOrchestrator;
 
-public class AppOrchestrator(
+internal class AppOrchestrator(
     IXmlTransformer xmlTransformer,
     IDataEnricher dataEnricher) : IAppOrchestrator
 {

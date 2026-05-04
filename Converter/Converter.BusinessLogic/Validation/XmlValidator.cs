@@ -6,7 +6,7 @@ using Converter.BusinessLogic.Constants;
 
 namespace Converter.BusinessLogic.Validation;
 
-public class XmlValidator : IXmlValidator
+internal class XmlValidator : IXmlValidator
 {
     public bool Validate(string xmlPath, string xsdResourceUri, out string message)
     {

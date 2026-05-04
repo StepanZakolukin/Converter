@@ -4,7 +4,7 @@ using System.Xml.Xsl;
 
 namespace Converter.BusinessLogic.XmlTransformer;
 
-public class XsltTransformer : IXmlTransformer
+internal class XsltTransformer : IXmlTransformer
 {
     public void Transform(string inputPath, string xsltResourceUri, string outputPath)
     {
