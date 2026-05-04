@@ -12,7 +12,7 @@ public class XsltTransformer : IXmlTransformer
         var resourceStream = Application.GetResourceStream(uri);
 
         if (resourceStream == null)
-            throw new ArgumentException("Ресурс не найден", nameof(xsltResourceUri));
+            throw new ArgumentException("Файл преобразования не найден", nameof(xsltResourceUri));
 
         using var reader = XmlReader.Create(resourceStream.Stream);
         var xslt = new XslCompiledTransform();

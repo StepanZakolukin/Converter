@@ -1,5 +1,6 @@
 ﻿using Converter.BusinessLogic.AppOrchestrator;
 using Converter.BusinessLogic.DataEnricher;
+using Converter.BusinessLogic.Validation;
 using Converter.BusinessLogic.XmlTransformer;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +13,8 @@ public static class BusinessLogicConfiguration
         return services
             .AddSingleton<IDataEnricher, DataEnricher.DataEnricher>()
             .AddSingleton<IXmlTransformer, XsltTransformer>()
-            .AddSingleton<IAppOrchestrator, AppOrchestrator.AppOrchestrator>();
+            .AddSingleton<IAppOrchestrator, AppOrchestrator.AppOrchestrator>()
+            .AddSingleton<IXmlValidator, XmlValidator>()
+            .AddSingleton<IXmlIntegrityChecker, XmlIntegrityChecker>();
     }
 }

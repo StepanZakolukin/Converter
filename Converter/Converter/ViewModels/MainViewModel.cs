@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Converter.BusinessLogic;
@@ -6,6 +7,7 @@ using Converter.BusinessLogic.AppOrchestrator;
 using Converter.BusinessLogic.Constants;
 using Converter.BusinessLogic.Models;
 using Converter.BusinessLogic.Repositories;
+using Converter.BusinessLogic.Validation;
 using Converter.Constants;
 using Converter.Extensions;
 
@@ -49,11 +51,18 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] 
     private ObservableCollection<EmployeeGridRow> _employees = [];
 
-    private readonly IAppOrchestrator _orchestrator;
+    private readonly IAppOrchestrator orchestrator;
+    private readonly IXmlIntegrityChecker integrityChecker;
+    private readonly IXmlValidator xmlValidator;
     
-    public MainViewModel(IAppOrchestrator orchestrator)
+    public MainViewModel(
+        IAppOrchestrator orchestrator,
+        IXmlIntegrityChecker integrityChecker,
+        IXmlValidator xmlValidator)
     {
-        _orchestrator = orchestrator;
+        this.integrityChecker = integrityChecker;
+        this.xmlValidator = xmlValidator;
+        this.orchestrator = orchestrator;
         SelectedMonthRu = MonthList.First();
     }
 
@@ -64,9 +73,31 @@ public partial class MainViewModel : ObservableObject
     {
         var dialog = new Microsoft.Win32.OpenFileDialog { Filter = FileFilters.XML };
         if (dialog.ShowDialog() != true) return;
-        SourcePath = dialog.FileName;
+
+        var selectedPath = dialog.FileName;
+        var errorMessage = string.Empty;
+        
+        var isWellFormed = await Task.Run(() => integrityChecker.Check(selectedPath, out errorMessage));
+        if (!isWellFormed)
+        {
+            MessageBox.Show($"Файл поврежден:\n{errorMessage}", "Ошибка целостности", 
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+        
+        var isValid = xmlValidator.Validate(selectedPath, out errorMessage);
+    
+        if (!isValid)
+        {
+            MessageBox.Show($"Данные в файле некорректны:\n{errorMessage}", "Ошибка валидации", 
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+        
+        SourcePath = selectedPath;
         await RefreshUIFromSourceAsync();
     }
+
     
     [RelayCommand(CanExecute = nameof(CanAddEntry))]
     private async Task AddEntry()
@@ -116,7 +147,7 @@ public partial class MainViewModel : ObservableObject
 
         await Task.Run(() =>
         {
-            _orchestrator.RunFullCycle(SourcePath, saveDialog.FileName);
+            orchestrator.RunFullCycle(SourcePath, saveDialog.FileName);
         });
     }
 
